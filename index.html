@@ -49,7 +49,7 @@
     font-family: inherit;
     font-size: 0.95rem;
   }
-  input[type="text"], select, textarea {
+  input[type="text"], input[type="number"], select, textarea {
     width: 100%;
     padding: 8px 10px;
     background: #0d1117;
@@ -71,7 +71,6 @@
   }
   button:hover { filter: brightness(1.1); }
   button.secondary { background: #30363d; }
-  button.danger { background: var(--evil); }
   button.small { padding: 3px 8px; font-size: 0.78rem; }
   .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
   .row > * { flex: 1; min-width: 140px; }
@@ -113,7 +112,6 @@
   .tag.outsider { background: #3a2a1a; color: var(--outsider); border-color: #5a4a2a; }
   .tag.minion { background: #3a2a1a; color: var(--minion); border-color: #5a3a1a; }
   .tag.demon { background: #3a1a1a; color: var(--demon); border-color: #5a2a2a; }
-  .tag.collapsed { opacity: 0.35; text-decoration: line-through; }
   .tag button {
     background: transparent;
     border: none;
@@ -179,34 +177,42 @@
     font-size: 0.75rem;
     margin-left: 4px;
   }
+  .name-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+  }
 </style>
 </head>
 <body>
   <h1>薛丁格的鐘樓追蹤工具</h1>
-  <p class="subtitle">說書人專用 · 追蹤坍縮版本</p>
+  <p class="subtitle">說書人專用</p>
 
   <!-- 設定區 -->
   <div class="section" id="setupSection">
     <h2>遊戲設定</h2>
+    
     <div class="row">
       <div>
         <label>玩家人數（7～15人）</label>
-        <input type="number" id="playerCount" min="7" max="15" value="10">
-      </div>
-      <div style="flex:2">
-        <label>快速填入名字（用逗號分隔）</label>
-        <input type="text" id="quickNames" placeholder="例如：小明,小華,阿強,美美...">
+        <input type="number" id="playerCount" min="7" max="15" value="10" onchange="generateNameInputs()">
       </div>
     </div>
-    <button onclick="createPlayers()">建立玩家</button>
-    <button class="secondary" onclick="loadGame()">載入存檔</button>
+
+    <div id="nameInputsArea" style="margin-top: 16px;"></div>
+
+    <div style="margin-top: 16px;">
+      <button onclick="createPlayers()">確認並開始遊戲</button>
+      <button class="secondary" onclick="loadGame()">載入存檔</button>
+    </div>
   </div>
 
   <!-- 主要操作區 -->
   <div id="mainSection" class="hidden">
     <!-- 快速記錄選擇 -->
     <div class="section">
-      <h2>快速記錄選擇（會坍縮可能性）</h2>
+      <h2>快速記錄選擇</h2>
       <div class="row">
         <div>
           <label>玩家</label>
@@ -239,7 +245,7 @@
 
       <label>選擇內容</label>
       <textarea id="logContent" placeholder="例如：被喚醒並選擇了3號玩家作為目標"></textarea>
-      <button onclick="addEventAndCollapse()">加入時間軸並自動坍縮</button>
+      <button onclick="addEventAndCollapse()">加入時間軸並自動移除</button>
       <button class="secondary" onclick="clearLogForm()">清空</button>
     </div>
 
@@ -247,8 +253,10 @@
     <div class="section">
       <div class="flex-between">
         <h2>玩家狀態與角色可能性</h2>
-        <button class="small secondary" onclick="undo()">復原上一步</button>
-        <button class="small secondary" onclick="saveGame()">手動儲存</button>
+        <div>
+          <button class="small secondary" onclick="undo()">復原上一步</button>
+          <button class="small secondary" onclick="saveGame()">手動儲存</button>
+        </div>
       </div>
       <div class="players-grid" id="playersGrid"></div>
     </div>
@@ -262,9 +270,8 @@
   </div>
 
 <script>
-// ========== 26 個固定角色資料庫 ==========
+// ========== 26 個固定角色 ==========
 const ROLES = [
-  // 鎮民
   { id: "clockmaker", zh: "鐘錶匠", type: "townsfolk", wakesN1: true, wakesOther: false, chooses: false },
   { id: "pixie", zh: "小精靈", type: "townsfolk", wakesN1: true, wakesOther: false, chooses: false },
   { id: "empath", zh: "共情者", type: "townsfolk", wakesN1: true, wakesOther: true, chooses: false },
@@ -278,21 +285,15 @@ const ROLES = [
   { id: "tealady", zh: "茶藝師", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false },
   { id: "cannibal", zh: "食人族", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false },
   { id: "mayor", zh: "鎮長", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false },
-
-  // 外來者
   { id: "drunk", zh: "酒鬼", type: "outsider", wakesN1: false, wakesOther: false, chooses: false },
   { id: "recluse", zh: "陌客", type: "outsider", wakesN1: false, wakesOther: false, chooses: false },
-  { id: "damsel", zh: "落難少女", type: "outsider", wakesN1: false, wakesOther: false, chooses: false },
+  { id: "damsel", zh: "落難少女", type: "outsider", wakesN1: true, wakesOther: false, chooses: false },
   { id: "puzzlemaster", zh: "解謎大師", type: "outsider", wakesN1: false, wakesOther: false, chooses: false },
   { id: "golem", zh: "魔像", type: "outsider", wakesN1: false, wakesOther: false, chooses: false },
-
-  // 爪牙
   { id: "poisoner", zh: "投毒者", type: "minion", wakesN1: true, wakesOther: true, chooses: true },
   { id: "baron", zh: "男爵", type: "minion", wakesN1: false, wakesOther: false, chooses: false },
   { id: "devilsadvocate", zh: "魔鬼代言人", type: "minion", wakesN1: true, wakesOther: true, chooses: true },
   { id: "mastermind", zh: "主謀", type: "minion", wakesN1: false, wakesOther: false, chooses: false },
-
-  // 惡魔
   { id: "pukka", zh: "普卡", type: "demon", wakesN1: true, wakesOther: true, chooses: true },
   { id: "lleech", zh: "痢蛭", type: "demon", wakesN1: true, wakesOther: true, chooses: true },
   { id: "fanggu", zh: "方古", type: "demon", wakesN1: false, wakesOther: true, chooses: true }
@@ -300,9 +301,31 @@ const ROLES = [
 
 let players = [];
 let events = [];
+let history = [];
 let nextId = 1;
-let history = [];          // 用來存放歷史紀錄
-const MAX_HISTORY = 30;    // 最多記住 30 步
+const MAX_HISTORY = 30;
+
+function generateNameInputs() {
+  const count = parseInt(document.getElementById('playerCount').value) || 10;
+  const area = document.getElementById('nameInputsArea');
+
+  if (count < 7 || count > 15) {
+    area.innerHTML = '<p style="color:var(--evil);">請輸入 7～15 之間的人數</p>';
+    return;
+  }
+
+  let html = '<label>請輸入每位玩家的姓名：</label><div class="name-grid">';
+  for (let i = 1; i <= count; i++) {
+    html += `
+      <div>
+        <label style="font-size:0.8rem; color:var(--muted);">玩家 ${i}</label>
+        <input type="text" id="playerName${i}" placeholder="輸入姓名" style="margin-bottom:0;">
+      </div>
+    `;
+  }
+  html += '</div>';
+  area.innerHTML = html;
+}
 
 function createPlayers() {
   const count = parseInt(document.getElementById('playerCount').value) || 10;
@@ -310,20 +333,30 @@ function createPlayers() {
     alert('請輸入 7～15 之間的人數');
     return;
   }
-  const quick = document.getElementById('quickNames').value.trim();
-  const names = quick ? quick.split(/[,，、\s]+/).filter(n => n) : [];
+
+  const names = [];
+  for (let i = 1; i <= count; i++) {
+    const input = document.getElementById('playerName' + i);
+    const name = input ? input.value.trim() : '';
+    names.push(name || ('玩家 ' + i));
+  }
 
   players = [];
+  nextId = 1;
   for (let i = 0; i < count; i++) {
     players.push({
       id: nextId++,
-      name: names[i] || `玩家 ${i+1}`,
+      name: names[i],
       possible: ROLES.map(r => r.id),
       alive: true,
-      poisoned: false
+      poisoned: false,
+      alignment: null
     });
   }
+
   events = [];
+  history = [];
+
   renderAll();
   document.getElementById('setupSection').classList.add('hidden');
   document.getElementById('mainSection').classList.remove('hidden');
@@ -352,26 +385,26 @@ function renderPlayers() {
           <span class="count-badge">${count} 個可能</span>
         </h3>
         <div class="status-bar">
-  <span class="status ${p.alive ? 'alive' : 'dead'}">${p.alive ? '存活' : '死亡'}</span>
-  ${p.poisoned ? '<span class="status poisoned">中毒</span>' : ''}
-  ${p.alignment === 'good' ? '<span class="status alive">善良</span>' : ''}
-  ${p.alignment === 'evil' ? '<span class="status dead">邪惡</span>' : ''}
-</div>
+          <span class="status ${p.alive ? 'alive' : 'dead'}">${p.alive ? '存活' : '死亡'}</span>
+          ${p.poisoned ? '<span class="status poisoned">中毒</span>' : ''}
+          ${p.alignment === 'good' ? '<span class="status alive">善良</span>' : ''}
+          ${p.alignment === 'evil' ? '<span class="status dead">邪惡</span>' : ''}
+        </div>
         <div class="role-tags">
           ${possibleRoles.map(r => `
             <span class="tag ${r.type}">
               ${r.zh}
-              <button onclick="manualRemove(${p.id}, '${r.id}')" title="手動移除">×</button>
+              <button onclick="manualRemove(${p.id}, '${r.id}')">×</button>
             </span>
           `).join('')}
         </div>
         <div class="status-bar">
-  <button class="small secondary" onclick="toggleAlive(${p.id})">${p.alive ? '標記死亡' : '標記存活'}</button>
-  <button class="small secondary" onclick="togglePoisoned(${p.id})">${p.poisoned ? '解除中毒' : '標記中毒'}</button>
-  <button class="small secondary" onclick="setAlignment(${p.id}, 'good')">設為善良</button>
-  <button class="small secondary" onclick="setAlignment(${p.id}, 'evil')">設為邪惡</button>
-  <button class="small secondary" onclick="resetPossible(${p.id})">重置可能性</button>
-</div>
+          <button class="small secondary" onclick="toggleAlive(${p.id})">${p.alive ? '標記死亡' : '標記存活'}</button>
+          <button class="small secondary" onclick="togglePoisoned(${p.id})">${p.poisoned ? '解除中毒' : '標記中毒'}</button>
+          <button class="small secondary" onclick="setAlignment(${p.id}, 'good')">設為善良</button>
+          <button class="small secondary" onclick="setAlignment(${p.id}, 'evil')">設為邪惡</button>
+          <button class="small secondary" onclick="resetPossible(${p.id})">重置可能性</button>
+        </div>
       </div>
     `;
   }).join('');
@@ -397,7 +430,55 @@ function renderTimeline() {
   `).join('');
 }
 
-// ========== 自動坍縮核心 ==========
+function saveToHistory() {
+  const snapshot = {
+    players: JSON.parse(JSON.stringify(players)),
+    events: JSON.parse(JSON.stringify(events)),
+    nextId: nextId
+  };
+  history.push(snapshot);
+  if (history.length > MAX_HISTORY) history.shift();
+}
+
+function undo() {
+  if (history.length === 0) {
+    alert('沒有可以復原的步驟了');
+    return;
+  }
+  const last = history.pop();
+  players = last.players;
+  events = last.events;
+  nextId = last.nextId;
+  renderAll();
+  saveGame();
+  alert('已復原到上一步');
+}
+
+function setAlignment(pid, alignment) {
+  saveToHistory();
+  const p = players.find(x => x.id === pid);
+  if (!p) return;
+
+  p.alignment = alignment;
+  let newPossible = ROLES.map(r => r.id);
+
+  if (alignment === 'good') {
+    newPossible = newPossible.filter(id => {
+      const r = getRole(id);
+      return r.type === 'townsfolk' || r.type === 'outsider';
+    });
+  } else if (alignment === 'evil') {
+    newPossible = newPossible.filter(id => {
+      const r = getRole(id);
+      return r.type === 'minion' || r.type === 'demon';
+    });
+  }
+
+  p.possible = newPossible;
+  renderPlayers();
+  saveGame();
+}
+
 function addEventAndCollapse() {
   saveToHistory();
   const pid = parseInt(document.getElementById('logPlayer').value);
@@ -420,7 +501,6 @@ function addEventAndCollapse() {
   const isNight1 = phase === 'N1';
   const isOtherNight = phase.startsWith('N') && phase !== 'N1';
 
-  // 根據「被喚醒」進行坍縮
   if (woken) {
     if (isNight1) {
       p.possible = p.possible.filter(id => {
@@ -443,7 +523,6 @@ function addEventAndCollapse() {
     }
   }
 
-  // 根據「選擇了目標」進行坍縮
   if (chose) {
     p.possible = p.possible.filter(id => {
       const r = getRole(id);
@@ -455,12 +534,8 @@ function addEventAndCollapse() {
     });
   }
 
-  // 死亡標記
-  if (died) {
-    p.alive = false;
-  }
+  if (died) p.alive = false;
 
-  // 記錄事件
   const removedStr = [...new Set(removed)].join('、') || null;
   events.push({
     id: Date.now(),
@@ -472,7 +547,6 @@ function addEventAndCollapse() {
     collapsed: removedStr
   });
 
-  // 清空表單
   document.getElementById('logContent').value = '';
   document.getElementById('flagWoken').checked = false;
   document.getElementById('flagChoseTarget').checked = false;
@@ -481,10 +555,6 @@ function addEventAndCollapse() {
 
   renderAll();
   saveGame();
-
-  if (removedStr) {
-    alert(`已自動移除不可能角色：\n${removedStr}`);
-  }
 }
 
 function manualRemove(pid, roleId) {
@@ -499,9 +569,9 @@ function manualRemove(pid, roleId) {
 function resetPossible(pid) {
   saveToHistory();
   const p = players.find(x => x.id === pid);
-  if (p && confirm('確定重置此玩家的所有可能性與陣營？')) {
-    p.possible = ROLES.map(r => r.id);  // 恢復全部角色
-    p.alignment = null;                 // 清除陣營
+  if (p) {
+    p.possible = ROLES.map(r => r.id);
+    p.alignment = null;
     renderPlayers();
     saveGame();
   }
@@ -510,13 +580,21 @@ function resetPossible(pid) {
 function toggleAlive(pid) {
   saveToHistory();
   const p = players.find(x => x.id === pid);
-  if (p) { p.alive = !p.alive; renderPlayers(); saveGame(); }
+  if (p) {
+    p.alive = !p.alive;
+    renderPlayers();
+    saveGame();
+  }
 }
 
 function togglePoisoned(pid) {
   saveToHistory();
   const p = players.find(x => x.id === pid);
-  if (p) { p.poisoned = !p.poisoned; renderPlayers(); saveGame(); }
+  if (p) {
+    p.poisoned = !p.poisoned;
+    renderPlayers();
+    saveGame();
+  }
 }
 
 function updateName(pid, newName) {
@@ -538,6 +616,7 @@ function clearLogForm() {
 
 function clearTimeline() {
   if (confirm('確定清空時間軸？')) {
+    saveToHistory();
     events = [];
     renderTimeline();
     saveGame();
@@ -560,6 +639,7 @@ function loadGame() {
     players = data.players || [];
     events = data.events || [];
     nextId = data.nextId || 1;
+    history = [];
     document.getElementById('setupSection').classList.add('hidden');
     document.getElementById('mainSection').classList.remove('hidden');
     renderAll();
@@ -568,68 +648,9 @@ function loadGame() {
     alert('存檔損壞');
   }
 }
-function setAlignment(pid, alignment) {
-  saveToHistory();   
-  const p = players.find(x => x.id === pid);
-  if (!p) return;
 
-  // 記錄陣營
-  p.alignment = alignment;
-
-  // 重要：每次都從「全部角色」重新開始過濾
-  let newPossible = ROLES.map(r => r.id);
-
-  if (alignment === 'good') {
-    // 善良：只保留鎮民 + 外來者
-    newPossible = newPossible.filter(id => {
-      const r = getRole(id);
-      return r.type === 'townsfolk' || r.type === 'outsider';
-    });
-  } 
-  else if (alignment === 'evil') {
-    // 邪惡：只保留爪牙 + 惡魔
-    newPossible = newPossible.filter(id => {
-      const r = getRole(id);
-      return r.type === 'minion' || r.type === 'demon';
-    });
-  }
-
-  p.possible = newPossible;
-
-  renderPlayers();
-  saveGame();
-}
-function saveToHistory() {
-  // 深拷貝目前的狀態
-  const snapshot = {
-    players: JSON.parse(JSON.stringify(players)),
-    events: JSON.parse(JSON.stringify(events)),
-    nextId: nextId
-  };
-  
-  history.push(snapshot);
-
-  // 超過上限就刪掉最舊的
-  if (history.length > MAX_HISTORY) {
-    history.shift();
-  }
-}
-function undo() {
-  if (history.length === 0) {
-    alert('沒有可以復原的步驟了');
-    return;
-  }
-
-  const lastState = history.pop();   // 取出上一步
-  players = lastState.players;
-  events = lastState.events;
-  nextId = lastState.nextId;
-
-  renderAll();
-  saveGame();
-  alert('已復原到上一步');
-}
-window.addEventListener('beforeunload', saveGame);
+// 網頁一打開就產生姓名輸入框
+generateNameInputs();
 </script>
 </body>
 </html>
