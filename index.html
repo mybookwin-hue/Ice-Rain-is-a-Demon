@@ -495,7 +495,7 @@ function addEventAndCollapse() {
   const died = document.getElementById('flagDied').checked;
   const dayAbility = document.getElementById('flagDayAbility').checked;
 
-  if (!content && !woken && !chose && !info && !died) {
+  if (!content && !woken && !chose && !info && !died && !dayAbility) {
     alert('請至少輸入內容或勾選一個行為標記');
     return;
   }
