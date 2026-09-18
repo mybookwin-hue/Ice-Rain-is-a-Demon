@@ -388,7 +388,7 @@ function renderPlayers() {
         <div class="status-bar">
           <span class="status 
           ${p.alive ? 'alive' : 'dead'}">${p.alive ? '存活' : '死亡'}</span>
-          ${p.possiblyDead ? '<span class="status poisoned">可能死亡</span>' : ''}
+          ${p.possiblyDead ? '<span class="small danger">可能死亡</span>' : ''}
           ${p.poisoned ? '<span class="status poisoned">中毒</span>' : ''}
           ${p.alignment === 'good' ? '<span class="status alive">善良</span>' : ''}
           ${p.alignment === 'evil' ? '<span class="status dead">邪惡</span>' : ''}
