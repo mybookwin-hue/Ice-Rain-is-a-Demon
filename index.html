@@ -392,7 +392,7 @@ function renderPlayers() {
         </div>
         <div class="status-bar">
           <button class="small secondary" onclick="toggleAlive(${p.id})">${p.alive ? '標記死亡' : '標記存活'}</button>
-          <button class="small danger" onclick="togglePossiblyDead(${p.id})">${p.possiblyDead ? '取消可能死亡' : '可能死亡'}</button>
+          <button class="small secondary" onclick="togglePossiblyDead(${p.id})">${p.possiblyDead ? '取消可能死亡' : '可能死亡'}</button>
           <button class="small secondary" onclick="togglePoisoned(${p.id})">${p.poisoned ? '解除中毒' : '標記中毒'}</button>
           <button class="small secondary" onclick="setAlignment(${p.id}, 'good')">設為善良</button>
           <button class="small secondary" onclick="setAlignment(${p.id}, 'evil')">設為邪惡</button>
