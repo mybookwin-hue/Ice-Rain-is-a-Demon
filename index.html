@@ -72,6 +72,7 @@
   button:hover { filter: brightness(1.1); }
   button.secondary { background: #30363d; }
   button.small { padding: 3px 8px; font-size: 0.78rem; }
+  button.danger { background: var(--evil); }
   .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
   .row > * { flex: 1; min-width: 140px; }
   .players-grid {
@@ -192,16 +193,13 @@
   <!-- 設定區 -->
   <div class="section" id="setupSection">
     <h2>遊戲設定</h2>
-    
     <div class="row">
       <div>
         <label>玩家人數（7～15人）</label>
         <input type="number" id="playerCount" min="7" max="15" value="10" onchange="generateNameInputs()">
       </div>
     </div>
-
     <div id="nameInputsArea" style="margin-top: 16px;"></div>
-
     <div style="margin-top: 16px;">
       <button onclick="createPlayers()">確認並開始遊戲</button>
       <button class="secondary" onclick="loadGame()">載入存檔</button>
@@ -235,26 +233,26 @@
           </select>
         </div>
       </div>
-
       <div class="checkbox-group">
-  <label><input type="checkbox" id="flagWoken"> 想要被喚醒</label>
-  <label><input type="checkbox" id="flagChoseTarget"> 夜晚選擇了目標</label>
-  <label><input type="checkbox" id="flagReceivedInfo"> 獲得資訊</label>
-  <label><input type="checkbox" id="flagDayAbility"> 白天使用能力</label>
-  <label><input type="checkbox" id="flagDied"> 死亡</label>
-</div>
-
+        <label><input type="checkbox" id="flagWoken"> 想要被喚醒</label>
+        <label><input type="checkbox" id="flagChoseTarget"> 夜晚選擇了目標</label>
+        <label><input type="checkbox" id="flagReceivedInfo"> 獲得資訊</label>
+        <label><input type="checkbox" id="flagDayAbility"> 白天使用能力</label>
+        <label><input type="checkbox" id="flagDied"> 死亡</label>
+      </div>
       <label>選擇內容</label>
       <textarea id="logContent" placeholder="例如：被喚醒並選擇了3號玩家作為目標"></textarea>
       <button onclick="addEventAndCollapse()">加入時間軸並自動移除</button>
       <button class="secondary" onclick="clearLogForm()">清空</button>
     </div>
+
     <!-- 時間軸 -->
     <div class="section">
       <h2>時間軸</h2>
       <div id="timeline"></div>
       <button class="secondary small" onclick="clearTimeline()">清空時間軸</button>
     </div>
+
     <!-- 玩家卡片 -->
     <div class="section">
       <div class="flex-between">
@@ -265,10 +263,10 @@
         </div>
       </div>
       <div class="players-grid" id="playersGrid"></div>
+    </div>
   </div>
 
 <script>
-// ========== 26 個固定角色 ==========
 const ROLES = [
   { id: "clockmaker", zh: "鐘錶匠", type: "townsfolk", wakesN1: true, wakesOther: false, chooses: false, dayAbility: false },
   { id: "pixie", zh: "小精靈", type: "townsfolk", wakesN1: true, wakesOther: false, chooses: false, dayAbility: false },
@@ -306,12 +304,10 @@ const MAX_HISTORY = 30;
 function generateNameInputs() {
   const count = parseInt(document.getElementById('playerCount').value) || 10;
   const area = document.getElementById('nameInputsArea');
-
   if (count < 7 || count > 15) {
     area.innerHTML = '<p style="color:var(--evil);">請輸入 7～15 之間的人數</p>';
     return;
   }
-
   let html = '<label>請輸入每位玩家的姓名：</label><div class="name-grid">';
   for (let i = 1; i <= count; i++) {
     html += `
@@ -331,14 +327,12 @@ function createPlayers() {
     alert('請輸入 7～15 之間的人數');
     return;
   }
-
   const names = [];
   for (let i = 1; i <= count; i++) {
     const input = document.getElementById('playerName' + i);
     const name = input ? input.value.trim() : '';
     names.push(name || ('玩家 ' + i));
   }
-
   players = [];
   nextId = 1;
   for (let i = 0; i < count; i++) {
@@ -352,10 +346,8 @@ function createPlayers() {
       alignment: null
     });
   }
-
   events = [];
   history = [];
-
   renderAll();
   document.getElementById('setupSection').classList.add('hidden');
   document.getElementById('mainSection').classList.remove('hidden');
@@ -384,8 +376,7 @@ function renderPlayers() {
           <span class="count-badge">${count} 個可能</span>
         </h3>
         <div class="status-bar">
-          <span class="status 
-          ${p.alive ? 'alive' : 'dead'}">${p.alive ? '存活' : '死亡'}</span>
+          <span class="status ${p.alive ? 'alive' : 'dead'}">${p.alive ? '存活' : '死亡'}</span>
           ${p.possiblyDead ? '<span class="status dead">可能死亡</span>' : ''}
           ${p.poisoned ? '<span class="status poisoned">中毒</span>' : ''}
           ${p.alignment === 'good' ? '<span class="status alive">善良</span>' : ''}
@@ -399,14 +390,14 @@ function renderPlayers() {
             </span>
           `).join('')}
         </div>
-      <div class="status-bar">
-  <button class="small secondary" onclick="toggleAlive(${p.id})">${p.alive ? '標記死亡' : '標記存活'}</button>
-  <button class="small secondary" onclick="togglePossiblyDead(${p.id})">${p.possiblyDead ? '取消可能死亡' : '可能死亡'}</button>
-  <button class="small secondary" onclick="togglePoisoned(${p.id})">${p.poisoned ? '解除中毒' : '標記中毒'}</button>
-  <button class="small secondary" onclick="setAlignment(${p.id}, 'good')">設為善良</button>
-  <button class="small secondary" onclick="setAlignment(${p.id}, 'evil')">設為邪惡</button>
-  <button class="small secondary" onclick="resetPossible(${p.id})">重置可能性</button>
-</div>
+        <div class="status-bar">
+          <button class="small secondary" onclick="toggleAlive(${p.id})">${p.alive ? '標記死亡' : '標記存活'}</button>
+          <button class="small danger" onclick="togglePossiblyDead(${p.id})">${p.possiblyDead ? '取消可能死亡' : '可能死亡'}</button>
+          <button class="small secondary" onclick="togglePoisoned(${p.id})">${p.poisoned ? '解除中毒' : '標記中毒'}</button>
+          <button class="small secondary" onclick="setAlignment(${p.id}, 'good')">設為善良</button>
+          <button class="small secondary" onclick="setAlignment(${p.id}, 'evil')">設為邪惡</button>
+          <button class="small secondary" onclick="resetPossible(${p.id})">重置可能性</button>
+        </div>
       </div>
     `;
   }).join('');
@@ -453,16 +444,13 @@ function undo() {
   nextId = last.nextId;
   renderAll();
   saveGame();
-  alert('已復原到上一步');
 }
 
 function setAlignment(pid, alignment) {
   saveToHistory();
   const p = players.find(x => x.id === pid);
   if (!p) return;
-
   p.alignment = alignment;
-  // 只從「目前還可能的角色」中過濾，不會把已刪除的加回來
   if (alignment === 'good') {
     p.possible = p.possible.filter(id => {
       const r = getRole(id);
@@ -474,7 +462,6 @@ function setAlignment(pid, alignment) {
       return r.type === 'minion' || r.type === 'demon';
     });
   }
-
   renderPlayers();
   saveGame();
 }
@@ -487,10 +474,10 @@ function addEventAndCollapse() {
   const woken = document.getElementById('flagWoken').checked;
   const chose = document.getElementById('flagChoseTarget').checked;
   const info = document.getElementById('flagReceivedInfo').checked;
-  const died = document.getElementById('flagDied').checked;
   const dayAbility = document.getElementById('flagDayAbility').checked;
+  const died = document.getElementById('flagDied').checked;
 
-  if (!content && !woken && !chose && !info && !died && !dayAbility) {
+  if (!content && !woken && !chose && !info && !dayAbility && !died) {
     alert('請至少輸入內容或勾選一個行為標記');
     return;
   }
@@ -534,37 +521,40 @@ function addEventAndCollapse() {
       return true;
     });
   }
- // 根據「白天使用能力」進行坍縮
-if (dayAbility) {
-  p.possible = p.possible.filter(id => {
-    const r = getRole(id);
-    if (!r.dayAbility) {
-      removed.push(r.zh);
-      return false;
-    }
-    return true;
-  });
-}
+
+  if (dayAbility) {
+    p.possible = p.possible.filter(id => {
+      const r = getRole(id);
+      if (!r.dayAbility) {
+        removed.push(r.zh);
+        return false;
+      }
+      return true;
+    });
+  }
+
   if (died) p.alive = false;
 
+  let autoText = '';
+  if (woken) autoText += '被喚醒';
+  if (chose) autoText += (autoText ? ' + ' : '') + '選擇目標';
+  if (dayAbility) autoText += (autoText ? ' + ' : '') + '白天使用能力';
+  if (info) autoText += (autoText ? ' + ' : '') + '獲得資訊';
+  if (died) autoText += (autoText ? ' + ' : '') + '死亡';
+
   const removedStr = [...new Set(removed)].join('、') || null;
+
   events.push({
     id: Date.now(),
     playerId: pid,
     playerName: p.name,
     phase,
-    content: content || (woken ? '被喚醒' : '') + (chose ? ' + 選擇目標' : ''),(dayAbility ? ' + 白天使用能力' : ''),(ReceivedInfo ? ' + 獲得資訊' : ''),
+    content: content || autoText || '記錄',
     time: new Date().toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}),
     collapsed: removedStr
   });
 
-  document.getElementById('logContent').value = '';
-  document.getElementById('flagWoken').checked = false;
-  document.getElementById('flagChoseTarget').checked = false;
-  document.getElementById('flagReceivedInfo').checked = false;
-  document.getElementById('flagDied').checked = false;
-  document.getElementById('flagDayAbility').checked = false;
-
+  clearLogForm();
   renderAll();
   saveGame();
 }
@@ -599,6 +589,16 @@ function toggleAlive(pid) {
   }
 }
 
+function togglePossiblyDead(pid) {
+  saveToHistory();
+  const p = players.find(x => x.id === pid);
+  if (p) {
+    p.possiblyDead = !p.possiblyDead;
+    renderPlayers();
+    saveGame();
+  }
+}
+
 function togglePoisoned(pid) {
   saveToHistory();
   const p = players.find(x => x.id === pid);
@@ -623,6 +623,7 @@ function clearLogForm() {
   document.getElementById('flagWoken').checked = false;
   document.getElementById('flagChoseTarget').checked = false;
   document.getElementById('flagReceivedInfo').checked = false;
+  document.getElementById('flagDayAbility').checked = false;
   document.getElementById('flagDied').checked = false;
 }
 
@@ -661,16 +662,6 @@ function loadGame() {
   }
 }
 
-function togglePossiblyDead(pid) {
-  saveToHistory();
-  const p = players.find(x => x.id === pid);
-  if (p) {
-    p.possiblyDead = !p.possiblyDead;
-    renderPlayers();
-    saveGame();
-  }
-}
-// 網頁一打開就產生姓名輸入框
 generateNameInputs();
 </script>
 </body>
