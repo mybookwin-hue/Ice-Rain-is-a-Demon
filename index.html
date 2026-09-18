@@ -249,7 +249,12 @@
       <button onclick="addEventAndCollapse()">加入時間軸並自動移除</button>
       <button class="secondary" onclick="clearLogForm()">清空</button>
     </div>
-
+    <!-- 時間軸 -->
+    <div class="section">
+      <h2>時間軸</h2>
+      <div id="timeline"></div>
+      <button class="secondary small" onclick="clearTimeline()">清空時間軸</button>
+    </div>
     <!-- 玩家卡片 -->
     <div class="section">
       <div class="flex-between">
@@ -260,14 +265,6 @@
         </div>
       </div>
       <div class="players-grid" id="playersGrid"></div>
-    </div>
-
-    <!-- 時間軸 -->
-    <div class="section">
-      <h2>時間軸</h2>
-      <div id="timeline"></div>
-      <button class="secondary small" onclick="clearTimeline()">清空時間軸</button>
-    </div>
   </div>
 
 <script>
