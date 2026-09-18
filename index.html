@@ -278,7 +278,7 @@ const ROLES = [
   { id: "undertaker", zh: "送葬者", type: "townsfolk", wakesN1: false, wakesOther: true, chooses: false, dayAbility: false },
   { id: "gambler", zh: "賭徒", type: "townsfolk", wakesN1: false, wakesOther: true, chooses: true, dayAbility: false },
   { id: "lycanthrope", zh: "半獸人", type: "townsfolk", wakesN1: false, wakesOther: true, chooses: true, dayAbility: false },
-  { id: "gossip", zh: "造謠者", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false, dayAbility: false },
+  { id: "gossip", zh: "造謠者", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false, dayAbility: true },
   { id: "fool", zh: "弄臣", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false, dayAbility: false },
   { id: "tealady", zh: "茶藝師", type: "townsfolk", wakesN1: false, wakesOther: false, chooses: false, dayAbility: false },
   { id: "cannibal", zh: "食人族", type: "townsfolk", wakesN1: false, wakesOther: true, chooses: false, dayAbility: false },
@@ -462,21 +462,19 @@ function setAlignment(pid, alignment) {
   if (!p) return;
 
   p.alignment = alignment;
-  let newPossible = ROLES.map(r => r.id);
-
+  // 只從「目前還可能的角色」中過濾，不會把已刪除的加回來
   if (alignment === 'good') {
-    newPossible = newPossible.filter(id => {
+    p.possible = p.possible.filter(id => {
       const r = getRole(id);
       return r.type === 'townsfolk' || r.type === 'outsider';
     });
   } else if (alignment === 'evil') {
-    newPossible = newPossible.filter(id => {
+    p.possible = p.possible.filter(id => {
       const r = getRole(id);
       return r.type === 'minion' || r.type === 'demon';
     });
   }
 
-  p.possible = newPossible;
   renderPlayers();
   saveGame();
 }
@@ -536,7 +534,17 @@ function addEventAndCollapse() {
       return true;
     });
   }
-
+ // 根據「白天使用能力」進行坍縮
+if (dayAbility) {
+  p.possible = p.possible.filter(id => {
+    const r = getRole(id);
+    if (!r.dayAbility) {
+      removed.push(r.zh);
+      return false;
+    }
+    return true;
+  });
+}
   if (died) p.alive = false;
 
   const removedStr = [...new Set(removed)].join('、') || null;
@@ -545,7 +553,7 @@ function addEventAndCollapse() {
     playerId: pid,
     playerName: p.name,
     phase,
-    content: content || (woken ? '被喚醒' : '') + (chose ? ' + 選擇目標' : ''),
+    content: content || (woken ? '被喚醒' : '') + (chose ? ' + 選擇目標' : ''),(dayAbility ? ' + 白天使用能力' : ''),(ReceivedInfo ? ' + 獲得資訊' : ''),
     time: new Date().toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit'}),
     collapsed: removedStr
   });
@@ -661,17 +669,6 @@ function togglePossiblyDead(pid) {
     renderPlayers();
     saveGame();
   }
-}
-  // 根據「白天使用能力」進行坍縮
-if (dayAbility) {
-  p.possible = p.possible.filter(id => {
-    const r = getRole(id);
-    if (!r.dayAbility) {
-      removed.push(r.zh);
-      return false;
-    }
-    return true;
-  });
 }
 // 網頁一打開就產生姓名輸入框
 generateNameInputs();
