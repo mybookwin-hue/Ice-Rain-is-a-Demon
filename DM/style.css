@@ -1,0 +1,461 @@
+/* =========================
+   變數與基本設定
+   ========================= */
+:root {
+  --bg-dark: #14141a;
+  --bg-sidebar: #1c1c24;
+  --bg-card: #25252f;
+  --bg-card-hover: #2e2e3a;
+  --accent: #c9a227;
+  --accent-light: #e8c547;
+  --text: #e8e6e3;
+  --text-muted: #9a9aa5;
+  --danger: #c0392b;
+  --warning: #d68910;
+  --safe: #27ae60;
+  --border: #3a3a48;
+  --sidebar-width: 240px;
+  --font-main: "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* =========================
+   整體布局：側邊欄 + 內容
+   ========================= */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- 側邊欄 ---------- */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+}
+
+.sidebar-header {
+  padding: 1.5rem 1.2rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.85rem 1.4rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.nav-item .icon {
+  margin-right: 0.7rem;
+  font-size: 1.1rem;
+}
+
+.nav-item:hover {
+  background: rgba(201, 162, 39, 0.08);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: rgba(201, 162, 39, 0.15);
+  color: var(--accent-light);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  padding: 1rem 1.2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+/* ---------- 右側內容區 ---------- */
+.content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 2rem 2.5rem 4rem;
+  max-width: 1100px;
+}
+
+/* 面板切換 */
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+.panel h1 {
+  font-size: 1.9rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--border);
+}
+
+/* =========================
+   子選單（主線劇情用）
+   ========================= */
+.sub-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.sub-tab {
+  padding: 0.55rem 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sub-tab:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.sub-tab.active {
+  background: var(--accent);
+  color: #1a1a1f;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.sub-panel {
+  display: none;
+}
+
+.sub-panel.active {
+  display: block;
+}
+
+/* =========================
+   卡片與網格
+   ========================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+}
+
+.card h2 {
+  color: var(--accent-light);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.card h3 {
+  color: var(--accent-light);
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+
+.card ul {
+  margin: 0.6rem 0 0.8rem 1.4rem;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.status-danger {
+  border-left: 5px solid var(--danger);
+}
+
+.status-warning {
+  border-left: 5px solid var(--warning);
+}
+
+.status-safe {
+  border-left: 5px solid var(--safe);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+/* =========================
+   時間軸
+   ========================= */
+.timeline {
+  position: relative;
+  padding-left: 1.8rem;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.timeline-item {
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.25rem;
+  top: 0.35rem;
+  width: 11px;
+  height: 11px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--bg-dark);
+}
+
+.year {
+  font-weight: bold;
+  color: var(--accent-light);
+  margin-bottom: 0.25rem;
+}
+
+/* =========================
+   表格
+   ========================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: #1e1e28;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+tr:hover {
+  background: rgba(201, 162, 39, 0.07);
+}
+
+.monster-table th:nth-child(2),
+.monster-table td:nth-child(2),
+.monster-table th:nth-child(4),
+.monster-table td:nth-child(4),
+.monster-table th:nth-child(5),
+.monster-table td:nth-child(5) {
+  text-align: center;
+}
+
+/* =========================
+   按鈕與結果
+   ========================= */
+.roll-btn {
+  background: var(--accent);
+  color: #1a1a1f;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.roll-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+.roll-btn:active {
+  transform: translateY(0);
+}
+
+.result-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #1e1e28;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  min-height: 2.5rem;
+  font-size: 1.05rem;
+  display: none;
+}
+
+.result-box.show {
+  display: block;
+}
+
+/* =========================
+   響應式（手機）
+   ========================= */
+@media (max-width: 800px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .app {
+    flex-direction: column;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 1.5rem 1.2rem 3rem;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+  }
+
+  .nav-item {
+    width: auto;
+    flex: 1 1 auto;
+    justify-content: center;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    padding: 0.7rem 0.8rem;
+  }
+
+  .nav-item.active {
+    border-left: none;
+    border-bottom-color: var(--accent);
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+}
+
+/* =========================
+   歷史頁面專用樣式
+   ========================= */
+.intro-text {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.era-block {
+  margin-bottom: 2.5rem;
+}
+
+.era-title {
+  font-size: 1.4rem;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-history {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border);
+}
+
+.hist-item {
+  margin-bottom: 1.3rem;
+  position: relative;
+}
+
+.hist-item::before {
+  content: "";
+  position: absolute;
+  left: -1.85rem;
+  top: 0.4rem;
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--bg-dark);
+}
+
+.hist-year {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.hist-event {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.hist-item.current .hist-year {
+  color: var(--accent-light);
+  font-size: 1.05rem;
+}
+
+.hist-item.current .hist-event {
+  font-weight: 500;
+}

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>艾伯倫 DM 工具箱｜Eberron</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+    <!-- ========== 左側側邊欄 ========== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">⚔️ 艾伯倫 DM</div>
+        <div class="subtitle">Eberron Campaign</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-panel="plot">
+          <span class="icon">📜</span> 主線劇情
+        </button>
+        <button class="nav-item" data-panel="history">
+          <span class="icon">📚</span> 歷史
+        </button>
+        <button class="nav-item" data-panel="timeline">
+          <span class="icon">⏳</span> 近代時間軸
+        </button>
+        <button class="nav-item" data-panel="regions">
+          <span class="icon">🗺️</span> 大陸現況
+        </button>
+        <button class="nav-item" data-panel="bestiary">
+          <span class="icon">📖</span> 怪物圖鑑
+        </button>
+        <button class="nav-item" data-panel="tables">
+          <span class="icon">🎲</span> 隨機擲骰
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        僅供個人戰役使用
+      </div>
+    </aside>
+
+    <!-- ========== 右側內容區 ========== -->
+    <main class="content">
+
+      <!-- ===== 主線劇情（含有子選單） ===== -->
+      <section id="panel-plot" class="panel active">
+        <h1>📜 主線劇情</h1>
+
+        <div class="sub-tabs">
+          <button class="sub-tab active" data-sub="outline">主線大綱</button>
+          <button class="sub-tab" data-sub="nations">大陸十三國家設定</button>
+          <button class="sub-tab" data-sub="houses">十三龍紋家族</button>
+        </div>
+
+        <div id="sub-outline" class="sub-panel active">
+          <div class="card">
+            <h2>戰役主線大綱</h2>
+            <p>這裡放你自己的主線劇情。以下是範例結構，請替換成你的內容。</p>
+            <h3>第一幕：最後的戰爭餘波</h3>
+            <ul>
+              <li>玩家從【起始地點】開始</li>
+              <li>發現與「哀悼日」（The Mourning）相關的異常現象</li>
+              <li>初步接觸某個龍紋家族或五國情報單位</li>
+            </ul>
+            <h3>第二幕：隱藏的真相</h3>
+            <ul>
+              <li>深入調查龍紋、龍晶或遠古預言</li>
+              <li>與某個強大勢力產生衝突（可選：領主議會、血色盟約、魔鬼……）</li>
+            </ul>
+            <h3>最終目標</h3>
+            <p>阻止某股力量再次引發類似「哀悼」的災難，或揭開艾伯倫背後更大的陰謀。</p>
+            <p class="note">※ 建議把重要 NPC、關鍵地點、主要衝突寫在這裡，方便快速回顧。</p>
+          </div>
+        </div>
+
+        <div id="sub-nations" class="sub-panel">
+          <div class="grid">
+            <div class="card">
+              <h3>安黛爾</h3>
+              <p><strong>首都：</strong> 安恬城</p>
+              <p><strong>人口：</strong> 2，000，000（51％人類，16％半精靈，11％精靈，11％侏儒，5％半身人，3％半獸化人，2％半變形怪，1％其他）</p>
+              <p><strong>語言：</strong> 通用語、龍語、精靈語、半身人語</p>
+              <p><strong>特產品：</strong> 葡萄酒、奶酪、穀物、教育、時尚、奧法</p>
+            </div>
+            <div class="card">
+              <h3>布魯蘭</h3>
+              <p><strong>首都：</strong> 沃奧特</p>
+              <p><strong>人口：</strong> 3,700,000 （44%人類，14%侏儒，10%半精靈，8%精靈，7%矮人，4%半身人，4%半變形怪，4%地精，3%獸人，2%其他）</p>
+              <p><strong>語言：</strong> 通用語、侏儒語、精靈語、矮人語、半身人語、獸人語、地精語、沙華語</p>
+              <p><strong>特產品：</strong> 武器、盔甲、工具、精煉礦石、金屬製品、加工品、重工業產品</p>
+            </div>
+            <div class="card">
+              <h3>達貢</h3>
+              <p><strong>首都：</strong> 路坎卓爾</p>
+              <p><strong>人口：</strong> 800，000（39％地精，29％大地精，13％熊地精，6％狗頭人，6％人類，4％侏儒，3％其他）</p>
+              <p><strong>語言：</strong> 地精語、通用語、龍語</p>
+              <p><strong>特產品：</strong> 僱傭兵服務</p>
+            </div>
+            <div class="card">
+              <h3>埃魯登原野</h3>
+             <p><strong>首都：</strong> 碧心城</p>
+              <p><strong>人口：</strong> 500，000（45％人類，16％半精靈，16％半獸化人，7％侏儒，7％半身人，3％獸人，3％精靈，3％其他種族）</p>
+              <p><strong>語言：</strong> 通用語、精靈語、半人語</p>
+              <p><strong>特產品：</strong> 農產品、畜牧業產品、德鲁伊魔法</p>
+            </div>
+            <div class="card status-danger">
+              <h3>賽爾  → 哀傷故地</h3>
+              <p><strong>狀態：</strong> 已毀滅（The Mournland）</p>
+              <p>994 YK 的「哀悼日」將整個賽爾化為死亡與異變之地。至今無人能解釋真正原因。</p>
+            </div>
+            <div class="card">
+              <h3>坎納斯</h3>
+             <p><strong>首都：</strong> 寇斯</p>
+              <p><strong>人口：</strong> 2,500,000（52％人類，18％矮人，10％半身人，8％半精靈，8％精靈，4％其他）</p>
+              <p><strong>語言：</strong> 通用語、矮人語、精靈語、半身人語</p>
+              <p><strong>特產品：</strong> 麥酒、乳製品、玻璃、穀物、家畜、木材、紙張、紡織品、亡靈</p>
+            </div>
+            <div class="card">
+              <h3>拉扎爾邦聯</h3>
+             <p><strong>首都：</strong> 帝王港</p>
+              <p><strong>人口：</strong> 500，000（42％人类，16％侏儒，14％半精靈，12％半變形怪，5％矮人，4％半身人，3％其他）</p>
+              <p><strong>語言：</strong> 通用語、侏儒語、矮人語、精靈語、半身人語</p>
+              <p><strong>特產品：</strong> 漁業、傭兵、商業、海盜、船舶、貿易品</p>
+            </div>
+            <div class="card">
+              <h3>瑟雷恩</h3>
+             <p><strong>首都：</strong> 銀焰堡</p>
+              <p><strong>人口：</strong> 2，300，000（70％人類，10％半精靈，9％矮人，4％精靈，4％半身人，3％其他）</p>
+              <p><strong>語言：</strong> 通用語、龍語、矮人語、精靈語、半身人語</p>
+              <p><strong>特產品：</strong> 高級工藝品、羊毛、紡織品、神術、水果、家畜</p>
+            </div>
+            <div class="card">
+              <h3>摩洛領</h3>
+             <p><strong>首都：</strong> 科洛那山城</p>
+              <p><strong>人口：</strong> 700，000（65％矮人，12％人類，10％獸人，8％侏儒，5％其他）</p>
+              <p><strong>語言：</strong> 矮人語、通用語、侏儒語、獸人語</p>
+              <p><strong>特產品：</strong> 金融業，精煉金屬和原礦</p>
+            </div>
+            <div class="card">
+              <h3>誇巴拉</h3>
+             <p><strong>首都：</strong> 新王座堡</p>
+              <p><strong>人口：</strong> 300，000（40％蜥蜴人，30％人類，15％狗頭人，7％半身人，3％矮人，2％半精靈，3％其他）</p>
+              <p><strong>語言：</strong> 龍語、通用語、卓爾語</p>
+              <p><strong>特產品：</strong> 艾伯倫龍晶</p>
+            </div>
+            <div class="card">
+              <h3>吉拉哥</h3>
+             <p><strong>首都：</strong> 托蘭港</p>
+              <p><strong>人口：</strong> 250，000（60％侏儒，16％人類，11％矮人，11％狗頭人，6％其他）</p>
+              <p><strong>語言：</strong> 通用語，侏儒語</p>
+              <p><strong>特產品：</strong> 煉金術、教育、元素束縛、娛樂、報紙</p>
+            </div>
+            <div class="card">
+              <h3>維綸娜</h3>
+             <p><strong>首都：</strong> 泰爾維拉埃斯塔</p>
+              <p><strong>人口：</strong> 70，000（43％精靈，15％半精靈，28％人類，5％半身人，9％其他）</p>
+              <p><strong>語言：</strong> 通用語、精靈語</p>
+              <p><strong>特產品：</strong> 精靈、馬、傭兵</p>
+            </div>
+            <div class="card">
+              <h3>塔蘭塔平原</h3>
+             <p><strong>首都：</strong> 歡樂堡</p>
+              <p><strong>人口：</strong> 400，000（80％半身人，10％人類，4％矮人，4％半變形怪，2％其他）</p>
+              <p><strong>語言：</strong> 通用語、半身人語</p>
+              <p><strong>特產品：</strong> 恐龍、半身人、牲畜</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="sub-houses" class="sub-panel">
+          <div class="grid">
+            <div class="card"><h3>坎尼斯家族 (House Cannith)</h3><p><strong>龍紋：</strong> 製造龍紋</p><p><strong>業務：</strong> 魔法物品、戰爭鍛造、構裝體</p></div>
+            <div class="card"><h3>德內斯家族 (House Deneith)</h3><p><strong>龍紋：</strong> 哨兵龍紋</p><p><strong>業務：</strong> 傭兵、護衛、執法</p></div>
+            <div class="card"><h3>加蘭達家族 (House Ghallanda)</h3><p><strong>龍紋：</strong> 好客龍紋</p><p><strong>業務：</strong> 旅店、酒館、接待服務</p></div>
+            <div class="card"><h3>喬拉斯科家族 (House Jorasco)</h3><p><strong>龍紋：</strong> 治療龍紋</p><p><strong>業務：</strong> 醫療、療養院</p></div>
+            <div class="card"><h3>昆達拉克家族 (House Kundarak)</h3><p><strong>龍紋：</strong> 守御龍紋</p><p><strong>業務：</strong> 銀行、金庫、安保</p></div>
+            <div class="card"><h3>萊蘭達家族 (House Lyrandar)</h3><p><strong>龍紋：</strong> 風暴龍紋</p><p><strong>業務：</strong> 空船、海運、天氣操控</p></div>
+            <div class="card"><h3>梅丹尼家族 (House Medani)</h3><p><strong>龍紋：</strong> 偵測龍紋</p><p><strong>業務：</strong> 調查、預警、情報</p></div>
+            <div class="card"><h3>奧利安家族 (House Orien)</h3><p><strong>龍紋：</strong> 通行龍紋</p><p><strong>業務：</strong> 閃電列車、陸上運輸</p></div>
+            <div class="card"><h3>菲亞蘭家族 (House Phiarlan)</h3><p><strong>龍紋：</strong> 陰影龍紋</p><p><strong>業務：</strong> 娛樂、情報、間諜</p></div>
+            <div class="card"><h3>西維斯家族 (House Sivis)</h3><p><strong>龍紋：</strong> 抄寫龍紋</p><p><strong>業務：</strong> 通訊、翻譯、公證</p></div>
+            <div class="card"><h3>薩拉斯克家族 (House Tharashk)</h3><p><strong>龍紋：</strong> 尋找龍紋</p><p><strong>業務：</strong> 探礦、賞金獵人、資源開採</p></div>
+            <div class="card"><h3>圖蘭尼家族 (House Thuranni)</h3><p><strong>龍紋：</strong> 陰影龍紋</p><p><strong>業務：</strong> 暗殺、情報、藝術</p></div>
+            <div class="card"><h3>瓦達里斯家族 (House Vadalis)</h3><p><strong>龍紋：</strong> 駕馭龍紋</p><p><strong>業務：</strong> 魔法生物育種、坐騎、動物訓練</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 歷史（完整時間線） ===== -->
+      <section id="panel-history" class="panel">
+        <h1>📚 艾伯倫歷史</h1>
+        <p class="intro-text">從過去到現在，歷史被分成許多階段。目前通用的紀年方式是從迦利法王國誕生之日算起（YK）。更古老的事件則以「距今多少年」記錄。</p>
+
+        <!-- 龍之時代 -->
+        <div class="era-block">
+          <h2 class="era-title">🐉 龍之時代</h2>
+          <div class="timeline-history">
+            <div class="hist-item">
+              <div class="hist-year">距今：？？？</div>
+              <div class="hist-event">在遙遠的過去，世界是唯一而混沌的。最初而最強大的龍類統治著一切。三條最強大的龍——<strong>希伯瑞斯、艾伯倫和吉伯爾</strong>——發現（或創造）了預言。世界開始四散分裂，逐漸分成三塊。最後，希伯瑞斯變成了圍繞世界的圓環，吉伯爾陷入黑暗深淵，而艾伯倫則醫治了世界並融入其間。希伯瑞斯產下了隨後的龍類，艾伯倫創造了其他的生物，而吉伯爾則造出了惡魔。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 惡魔時代 -->
+        <div class="era-block">
+          <h2 class="era-title">👹 惡魔時代</h2>
+          <div class="timeline-history">
+            <div class="hist-item">
+              <div class="hist-year">距今：-10,000,000</div>
+              <div class="hist-event">吉伯爾可怕的後裔席捲了地表世界，把整個世界變成猶如地獄一般，黑暗的巫婆們統治了世界。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-1,500,000</div>
+              <div class="hist-event">龍類重新發現了預言，恢復了他們古老的強大能力，並與其他古老種族（包括羽蛇）一同對抗惡魔統治者。普通種族則遠遠避開這些彷彿神一般的戰士，在戰爭中尋求苟活。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-100,000</div>
+              <div class="hist-event">羽蛇們在戰爭中作出了最大的犧牲，把最強大的惡魔領主和魔鬼們送回吉伯爾的世界並永遠封印。龍類則退卻到阿貢尼森，開始努力思索龍族的預言，並避開那些「次要種族」。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 巨人時代 -->
+        <div class="era-block">
+          <h2 class="era-title">🗿 巨人時代</h2>
+          <div class="timeline-history">
+            <div class="hist-item">
+              <div class="hist-year">距今：-80,000</div>
+              <div class="hist-event">巨人們開始在龍—惡魔戰爭的廢墟中成長，並在希恩德瑞克大陸建立了遼闊而強大的文明。他們奴役白精靈與卓爾精靈，無意間讓這些種族慢慢脫離蒙昧狀態。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-60,000</div>
+              <div class="hist-event">龍類主動與巨人王國接觸，開始教導巨人們使用奧術魔法。精靈們則偷偷跟在巨人們身後學習。巨人們很快熟練掌握奧術魔法，創造了許多至今仍無與倫比的奇蹟。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-40,000</div>
+              <div class="hist-event">魘靈透過連結達拉庫爾（夢境位面）與艾伯倫的界域之門湧出，入侵希恩德瑞克。經過數年戰鬥，巨人們使用強大的龍類魔法摧毀了界域之門。這造成巨大災難，希恩德瑞克大陸開始振顫，大片陸地陷入海中。與達拉庫爾的物理連結最終被切斷。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-39,000</div>
+              <div class="hist-event">殘存的巨人王國再也沒有從魘靈入侵中恢復。可怕的詛咒與瘟疫橫掃大陸，精靈奴隸趁機起義。巨人們試圖再次使用毀滅性魔法，但龍類發動攻擊。巨人文明分崩離析，卓爾精靈隱入希恩德瑞克內部，白精靈逃到艾倫諾。毀滅性法術打破了艾伯倫位面，產生龐大空間縫隙，許多奇特生物湧入，裂縫一年後自行癒合。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 怪獸時代 -->
+        <div class="era-block">
+          <h2 class="era-title">🐺 怪獸時代</h2>
+          <div class="timeline-history">
+            <div class="hist-item">
+              <div class="hist-year">距今：-38,000</div>
+              <div class="hist-event">龍族退回阿貢尼森，精靈在艾倫諾建立殖民地，巨人退回原始生活。科瓦雷大陸出現第一個地精王國（位於今天的布雷蘭和達貢地區）。湧入的生物經過千年繁衍，逐漸形成規模。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-30,000</div>
+              <div class="hist-event">獸人國家逐漸興起於科瓦雷西部，並與地精王國展開競爭。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-25,000</div>
+              <div class="hist-event">不朽評議會逐漸在艾倫諾成形。第一次精靈與龍類間的衝突爆發。這是一段相對和平的年代，其間不斷被小規模衝突打斷。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-16,000</div>
+              <div class="hist-event">達卡尼（Dhakaani）聯合所有地精王國，組成已知最龐大的地精帝國。護門者組織開始出現在科瓦雷西部的半獸人中間。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-12,000</div>
+              <div class="hist-event">矮人逐漸從霜落故地遷徙到鐵根山脈。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-10,000</div>
+              <div class="hist-event">艾倫諾的精靈進入科瓦雷，在今天維倫娜地區建立殖民地。因無法和平共存，與達卡尼帝國爆發衝突。後來精靈與龍類再次戰爭威脅到艾倫諾本土，他們不得不放棄科瓦雷殖民地。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-9,000</div>
+              <div class="hist-event">達吉爾戰爭（Daelkyr War）席捲科瓦雷大陸西部。</div>
+            </div>
+            <div class="hist-item">
+              <div class="hist-year">距今：-5,000</div>
+              <div class="hist-event">隨著達吉爾戰爭，達卡尼帝國逐漸分崩離析，最終導致地精文明毀滅。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 當代 -->
+        <div class="era-block">
+          <h2 class="era-title">🏛️ 當代（人類與龍紋興起）</h2>
+          <div class="timeline-history">
+            <div class="hist-item"><div class="hist-year">距今：-4,100</div><div class="hist-event">大德魯伊歐里安「甦醒」了。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-3,200</div><div class="hist-event">招待龍紋開始出現在塔蘭塔平原的半身人中間。陰影龍紋和死亡龍紋出現在艾倫諾的精靈中間。龍類帶著敬畏與厭惡注視著預言開始出現在這些「次要」種族中間。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-3,000</div><div class="hist-event">拉札爾帶領人類從索隆娜大陸遷徙到科瓦雷，在大陸東部登陸。醫護龍紋開始出現在塔蘭塔平原的半身人中間。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-2,800</div><div class="hist-event">抄寫龍紋出現在吉拉哥的侏儒中間。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-2,600</div><div class="hist-event">守護龍紋開始出現在坎納斯地區的人類中間。擁有死亡龍紋的沃爾家族在艾倫諾被消滅，不死巫妖沃爾被創造出來。擁有陰影龍紋的費奧蘭家族離開艾倫諾，進入科瓦雷與人類混居。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-2,500</div><div class="hist-event">截然不同的幾個殖民地逐漸演變成為科瓦雷中心地帶的五個國家。創造龍紋出現在塞爾地區的人類中間。結界龍紋出現在摩洛嶺的矮人們中間。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-2,000</div><div class="hist-event">征服者坎恩建立坎納斯國，擊敗殘存的地精政權。他試圖征服其餘四個人類國家但失敗。暴風龍紋出現在瑟雷恩的半精靈中間。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,900</div><div class="hist-event">通行龍紋出現在安黛爾的人類中間。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,800</div><div class="hist-event">畜牧龍紋出現在艾魯登荒原的人類中間。半夢靈為躲避達拉庫爾的魘靈迫害，逃到索隆娜大陸。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,500</div><div class="hist-event">魘靈開始入侵索隆娜。第二次人類移民浪潮延伸到科瓦雷西海岸。偵測龍紋出現在布雷蘭的半精靈中間。龍紋家族發動龍紋戰爭以消滅變異和混雜的龍紋。拾貳學會隨即創立。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,043</div><div class="hist-event">迦利法一世出生於坎納斯。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,022</div><div class="hist-event">迦利法繼承坎納斯的統治權。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,012</div><div class="hist-event">迦利法開始統一五國的戰爭。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,005</div><div class="hist-event">迦利法與龍紋家族交易，允許他們超脫於國家之外、處於中立地位，以換取支持。</div></div>
+            <div class="hist-item"><div class="hist-year">距今：-1,000</div><div class="hist-event">探索龍紋開始出現在陰影濕地的人類與半獸人中間。</div></div>
+            <div class="hist-item"><div class="hist-year">1 YK（距今 -998 年）</div><div class="hist-event">迦利法一世及其五個子女——塞爾、坎恩、瑟雷恩、安黛爾和布雷——最終控制五國並建立<strong>迦利法王國</strong>。</div></div>
+            <div class="hist-item"><div class="hist-year">15 YK</div><div class="hist-event">迦利法一世建立奧術評議會。</div></div>
+            <div class="hist-item"><div class="hist-year">28 YK</div><div class="hist-event">迦利法－拉札爾戰爭爆發，持續數十年。</div></div>
+            <div class="hist-item"><div class="hist-year">32 YK</div><div class="hist-event">迦利法五國分別按照其統治者（迦利法一世的五個子女）的名字命名。</div></div>
+            <div class="hist-item"><div class="hist-year">40 YK</div><div class="hist-event">八十五歲的迦利法一世逐漸將統治權交給最年長的子嗣塞爾。</div></div>
+            <div class="hist-item"><div class="hist-year">53 YK</div><div class="hist-event">迦利法一世去世。</div></div>
+            <div class="hist-item"><div class="hist-year">106 YK</div><div class="hist-event">昆達拉克家族被公認為龍紋家族。</div></div>
+            <div class="hist-item"><div class="hist-year">299 YK</div><div class="hist-event">銀焰教會誕生。</div></div>
+            <div class="hist-item"><div class="hist-year">347 YK</div><div class="hist-event">林蘭德家族獲準擁有安黛爾沿岸一座島嶼，創造暴風故裡。</div></div>
+            <div class="hist-item"><div class="hist-year">498 YK</div><div class="hist-event">西維斯家族在探索陰影濕地時發現探索龍紋。薩拉釋克家族隨後創立。</div></div>
+            <div class="hist-item"><div class="hist-year">512 YK</div><div class="hist-event">達隆國王命令建立星辰峰天文台。</div></div>
+            <div class="hist-item"><div class="hist-year">778 YK</div><div class="hist-event">從吉伯爾來的美杜莎佔領卡扎科卓爾。</div></div>
+            <div class="hist-item"><div class="hist-year">789 YK</div><div class="hist-event">西維斯家族的諮商站開始運作。</div></div>
+            <div class="hist-item"><div class="hist-year">802 YK</div><div class="hist-event">迦利法王國同龍紋家族合作，在希恩德瑞克北部半島建立貿易城市暴風灣。</div></div>
+            <div class="hist-item"><div class="hist-year">811 YK</div><div class="hist-event">第一條電氣鐵路落成，連接銀焰堡到安恬城。</div></div>
+            <div class="hist-item"><div class="hist-year">832 YK</div><div class="hist-event">銀焰教會開始有組織地屠殺獸化人。隨後五十年中，這一種族幾乎被消滅殆盡。</div></div>
+            <div class="hist-item"><div class="hist-year">845 YK</div><div class="hist-event">嘉奧特國王開始大規模興建閃電鐵路。十二年內連接人類五國以及吉拉哥、摩洛嶺和塔蘭塔平原。</div></div>
+            <div class="hist-item"><div class="hist-year">878 YK</div><div class="hist-event">鄧奈斯家族開始向客戶供應從達貢地區招募的地精傭兵。</div></div>
+            <div class="hist-item"><div class="hist-year">894 YK</div><div class="hist-event">嘉奧特國王（末代國王）駕崩。瑟林、坎埃斯和沃恩拒絕蜜莎安即位，沃加則支持其姊。<strong>終末戰爭爆發</strong>。</div></div>
+            <div class="hist-item"><div class="hist-year">896 YK</div><div class="hist-event">翡翠利爪行會建立。</div></div>
+            <div class="hist-item"><div class="hist-year">897 YK</div><div class="hist-event">坎埃斯一世成為巫妖沃爾的一個吸血鬼。</div></div>
+            <div class="hist-item"><div class="hist-year">910 YK</div><div class="hist-event">坎埃斯二世上台統治坎納斯。坎埃斯一世假裝去世，暗中尋找把國家從沃爾血族解放的方法。</div></div>
+            <div class="hist-item"><div class="hist-year">914 YK</div><div class="hist-event">摩洛嶺宣布獨立。瑟雷恩國王瑟林去世，銀焰教會開始控制這個國家。</div></div>
+            <div class="hist-item"><div class="hist-year">918 YK</div><div class="hist-event">未知的破壞者摧毀了薩恩的琉璃塔。</div></div>
+            <div class="hist-item"><div class="hist-year">928 YK</div><div class="hist-event">範•埃克斯蘭帶領五國移民建立誇巴拉。</div></div>
+            <div class="hist-item"><div class="hist-year">956 YK</div><div class="hist-event">艾倫諾的精靈僱傭兵佔領塞爾南部，宣告成立獨立精靈國家維倫娜。</div></div>
+            <div class="hist-item"><div class="hist-year">958 YK</div><div class="hist-event">在大德魯伊歐里安領導與林木守護者保護下，埃魯登原野宣布獨立。</div></div>
+            <div class="hist-item"><div class="hist-year">961 YK</div><div class="hist-event">勃蘭奈爾繼承布魯蘭王位。</div></div>
+            <div class="hist-item"><div class="hist-year">962 YK</div><div class="hist-event">吉拉哥正式與布魯蘭結盟。</div></div>
+            <div class="hist-item"><div class="hist-year">965 YK</div><div class="hist-event">卡尼斯家族製造出戰俑（活的構裝體），用於參與終末戰爭。</div></div>
+            <div class="hist-item"><div class="hist-year">969 YK</div><div class="hist-event">哈洛克領導大地精起義，達貢誕生。</div></div>
+            <div class="hist-item"><div class="hist-year">972 YK</div><div class="hist-event">索蘭妮家族從費奧蘭家族分裂開來。</div></div>
+            <div class="hist-item"><div class="hist-year">976 YK</div><div class="hist-event">坎納斯攝政王摩拉納被翡翠利爪放逐。</div></div>
+            <div class="hist-item"><div class="hist-year">986 YK</div><div class="hist-event">索拉•科倫的三個女兒帶領巨魔、洞穴巨人和豺狼人軍隊到達卓姆。</div></div>
+            <div class="hist-item"><div class="hist-year">987 YK</div><div class="hist-event">勃蘭奈爾國王封鎖國土西部的灰牆山脈。索拉•科倫的女兒們宣布卓姆獨立。</div></div>
+            <div class="hist-item"><div class="hist-year">990 YK</div><div class="hist-event">林德蘭家族經營的元素飛艇開始正式營運。</div></div>
+            <div class="hist-item"><div class="hist-year">991 YK</div><div class="hist-event">坎埃斯三世繼承坎納斯王位。</div></div>
+            <div class="hist-item"><div class="hist-year">993 YK</div><div class="hist-event">吉拉•黛蘭成為銀焰守護者。</div></div>
+            <div class="hist-item"><div class="hist-year">994 YK</div><div class="hist-event"><strong>塞爾被摧毀，成為哀傷故地（The Mournland）。</strong></div></div>
+            <div class="hist-item"><div class="hist-year">996 YK</div><div class="hist-event">王座協定簽訂，結束終末戰爭。正式承認安黛爾、布雷蘭、瑟雷恩、坎納斯、塔蘭塔平原、吉拉哥、誇巴拉、拉扎爾聯邦、摩洛領、艾魯登原野、達貢和維倫娜的獨立。卡尼斯家族被命令摧毀所有建造中的戰俑；剩餘戰俑被承認為有感情的生命。</div></div>
+            <div class="hist-item current">
+              <div class="hist-year">998 YK（現在）</div>
+              <div class="hist-event">戰役開始的時間點。和平脆弱，各方勢力暗中角力。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 近代時間軸（精簡版） ===== -->
+      <section id="panel-timeline" class="panel">
+        <h1>⏳ 近代時間軸（精簡）</h1>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="year">894 – 994 YK</div>
+            <div class="event">終末戰爭（The Last War）爆發，五國互相征戰百年。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="year">994 YK</div>
+            <div class="event"><strong>哀悼日（The Mourning）</strong>：賽爾王國瞬間毀滅，化為哀悼之地。戰爭因此停火。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="year">996 YK</div>
+            <div class="event">《王座協定》簽訂，正式結束終末戰爭，承認多個新國家。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="year">998 YK（現在）</div>
+            <div class="event">戰役開始的時間點。和平脆弱，各方勢力暗中角力。</div>
+          </div>
+        </div>
+        <p class="note">※ 完整歷史請見左側「歷史」分頁。</p>
+      </section>
+
+      <!-- ===== 大陸現況 ===== -->
+      <section id="panel-regions" class="panel">
+        <h1>🗺️ 目前大陸各地區現況</h1>
+        <div class="grid">
+          <div class="card status-danger">
+            <h3>哀悼之地 (The Mournland)</h3>
+            <p><strong>狀態：</strong> 極度危險</p>
+            <p>前賽爾領土。充滿霧氣、活體法術、變異生物與無法解釋的現象。</p>
+          </div>
+          <div class="card status-warning">
+            <h3>夏恩 (Sharn)</h3>
+            <p><strong>狀態：</strong> 繁榮但危險</p>
+            <p>布瑞蘭的塔城。上層區與下層區貧富差距極大，犯罪組織與龍紋家族勢力交織。</p>
+          </div>
+          <div class="card status-safe">
+            <h3>奧戴爾魔法區</h3>
+            <p><strong>狀態：</strong> 相對穩定</p>
+            <p>法師塔與學院仍在運作。</p>
+          </div>
+          <div class="card status-warning">
+            <h3>卡恩納斯</h3>
+            <p><strong>狀態：</strong> 緊張改革中</p>
+            <p>凱烏斯王試圖減少對血色盟約與不死軍團的依賴。</p>
+          </div>
+          <div class="card">
+            <h3>澤地 (The Shadow Marches)</h3>
+            <p>半獸人與薩拉斯克家族的根據地，龍晶礦脈重要產地。</p>
+          </div>
+          <div class="card">
+            <h3>希恩德瑞克</h3>
+            <p>遠古巨人遺跡與未知危險之地，許多探險隊的目標。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 怪物圖鑑 ===== -->
+      <section id="panel-bestiary" class="panel">
+        <h1>📖 怪物圖鑑（簡易版）</h1>
+        <p class="note">艾伯倫常見與特色生物快速參考。</p>
+        <table class="monster-table">
+          <thead>
+            <tr><th>名稱</th><th>CR</th><th>類型</th><th>AC</th><th>HP</th><th>備註</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>哥布林</td><td>1/4</td><td>類人</td><td>15</td><td>7</td><td>常見雜兵</td></tr>
+            <tr><td>戰鍛造 (Warforged)</td><td>1</td><td>構裝</td><td>16</td><td>22+</td><td>艾伯倫特色種族</td></tr>
+            <tr><td>食人魔</td><td>2</td><td>巨人</td><td>11</td><td>59</td><td>近戰重擊</td></tr>
+            <tr><td>活體法術</td><td>變動</td><td>異怪/元素</td><td>—</td><td>—</td><td>哀悼之地常見</td></tr>
+            <tr><td>幼年紅龍</td><td>10</td><td>龍類</td><td>18</td><td>178</td><td>火焰吐息</td></tr>
+            <tr><td>道洛斯 (Daelkyr)</td><td>極高</td><td>異怪</td><td>—</td><td>—</td><td>遠古異界威脅</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===== 隨機擲骰 ===== -->
+      <section id="panel-tables" class="panel">
+        <h1>🎲 隨機擲骰表</h1>
+        <div class="card">
+          <h2>魔物隨機出現表（d8）</h2>
+          <table class="roll-table">
+            <thead><tr><th>骰值</th><th>結果</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>哥布林小隊（1d4+2 隻）</td></tr>
+              <tr><td>2</td><td>戰鍛造逃兵或傭兵</td></tr>
+              <tr><td>3</td><td>食人魔（1 隻）</td></tr>
+              <tr><td>4</td><td>哀悼之地變異生物</td></tr>
+              <tr><td>5</td><td>龍紋家族相關人員（敵對或中立）</td></tr>
+              <tr><td>6</td><td>異怪（眼魔幼體、奪心魔蹤跡等）</td></tr>
+              <tr><td>7</td><td>元素或綁定元素生物</td></tr>
+              <tr><td>8</td><td>特殊事件（由 DM 決定）</td></tr>
+            </tbody>
+          </table>
+          <button class="roll-btn" onclick="rollTable('monster')">擲 d8 決定遭遇</button>
+          <div id="monster-result" class="result-box"></div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem;">
+          <h2>魔物素材剝取表</h2>
+          <h3>1. 素材類型（d5）</h3>
+          <table class="roll-table">
+            <thead><tr><th>骰值</th><th>素材類型</th><th>範例</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>結構素材</td><td>骨頭、鱗片、皮革、甲殼</td></tr>
+              <tr><td>2</td><td>煉金材料</td><td>血液、膽汁、毒液、腺體</td></tr>
+              <tr><td>3</td><td>奧術元件</td><td>眼睛、心臟、大腦、晶體、龍晶碎片</td></tr>
+              <tr><td>4</td><td>實用材料</td><td>脂肪、肌腱、毛皮、羽毛</td></tr>
+              <tr><td>5</td><td>戰利品／珍奇</td><td>牙齒、爪子、頭骨、保存器官</td></tr>
+            </tbody>
+          </table>
+          <h3>2. 品質表（d10）</h3>
+          <table class="roll-table">
+            <thead><tr><th>骰值</th><th>品質</th></tr></thead>
+            <tbody>
+              <tr><td>1–3</td><td>劣質</td></tr>
+              <tr><td>4–6</td><td>普通</td></tr>
+              <tr><td>7–8</td><td>優良</td></tr>
+              <tr><td>9</td><td>稀有</td></tr>
+              <tr><td>10</td><td>卓越</td></tr>
+            </tbody>
+          </table>
+          <button class="roll-btn" onclick="rollHarvest()">剝取素材（同時擲類型 + 品質）</button>
+          <div id="harvest-result" class="result-box"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
