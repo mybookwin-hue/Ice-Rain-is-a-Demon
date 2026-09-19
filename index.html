@@ -418,11 +418,39 @@ function renderTimeline() {
     <div class="event">
       <div class="meta">${e.phase} · ${e.playerName} · ${e.time}</div>
       <div>${e.content}</div>
-      ${e.collapsed ? `<div style="font-size:0.8rem;color:var(--warn);margin-top:4px">已自動移除：${e.collapsed}</div>` : ''}
+     ${e.collapsed ? `<div style="font-size:0.8rem;color:var(--warn);margin-top:4px">已自動移除：${e.collapsed}</div>` : ''}
+      <div style="margin-top:6px;">
+        <button class="small secondary" onclick="editEvent(${e.id})">修改</button>
+        <button class="small secondary" onclick="deleteEvent(${e.id})">刪除</button>
+      </div>
     </div>
   `).join('');
 }
 
+  function deleteEvent(eventId) {
+  saveToHistory();
+  events = events.filter(e => e.id !== eventId);
+  renderTimeline();
+  saveGame();
+}
+
+function editEvent(eventId) {
+  const e = events.find(x => x.id === eventId);
+  if (!e) return;
+
+  const newContent = prompt('請輸入新的內容：', e.content);
+  if (newContent === null) return;          // 使用者按取消
+  if (newContent.trim() === '') {
+    alert('內容不能空白');
+    return;
+  }
+
+  saveToHistory();
+  e.content = newContent.trim();
+  renderTimeline();
+  saveGame();
+}
+  
 function saveToHistory() {
   const snapshot = {
     players: JSON.parse(JSON.stringify(players)),
