@@ -463,7 +463,7 @@ const conditions = [
   },
   {
     id: 'tarred',
-    name: '焦油附著 (Tarred)',
+    name: '重油 (Tarred)',
     category: 'mh',
     categoryLabel: '魔物獵人客製',
     type: '狀態 / 區域',
