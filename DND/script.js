@@ -23,8 +23,8 @@ const weaponsData = [
   {
     id: "great_sword",
     name: "大劍 (Great Sword)",
-    type: "軍用近戰武器 (Martial Melee)",
-    prof: "巨劍 (Greatsword)",
+    type: "軍用近戰武器",
+    prof: "巨劍",
     base: "50 gp, 2d6 揮砍, 6 lb., 重型, 雙手",
     rarities: {
       common: "基礎 2d6 揮砍。",
@@ -37,7 +37,7 @@ const weaponsData = [
   {
     id: "longsword",
     name: "太刀 (Longsword)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "巨劍, 長劍",
     base: "25 gp, 1d10 揮砍, 3 lb., 雙手",
     rarities: {
@@ -50,8 +50,8 @@ const weaponsData = [
   },
   {
     id: "sword_and_shield",
-    name: "片手劍 (Sword & Shield)",
-    type: "軍用或簡易近戰武器 (Martial/Simple Melee)",
+    name: "片手劍&盾 (Sword & Shield)",
+    type: "軍用或簡易近戰武器",
     prof: "盾牌；短劍, 長劍, 彎刀, 輕型手槌, 釘頭槌",
     base: "劍: 10 gp, 1d6 揮砍, 2 lb., 靈巧, 輕型\n盾: 10 gp, 6 lb., +2 AC",
     rarities: {
@@ -65,7 +65,7 @@ const weaponsData = [
   {
     id: "dual_blades",
     name: "雙劍 (Dual Blades)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "長劍, 彎刀, 短劍",
     base: "15 gp, 1d6 揮砍, 2 lb., 靈巧, 輕型 (每把)",
     rarities: {
@@ -79,7 +79,7 @@ const weaponsData = [
   {
     id: "hammer",
     name: "大錘 (Hammer)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "戰槌, 巨槌",
     base: "35 gp, 2d6 鈍擊, 10 lb., 重型, 雙手",
     rarities: {
@@ -93,8 +93,8 @@ const weaponsData = [
   {
     id: "hunting_horn",
     name: "狩獵笛 (Hunting Horn)",
-    type: "軍用近戰武器 (Martial Melee)",
-    prof: "樂器 (Musical Instrument), 巨槌 (Maul), 戰槌 (Warhammer)",
+    type: "軍用近戰武器)",
+    prof: "樂器, 巨槌, 戰槌",
     base: "50 gp, 1d12 鈍擊, 8 lb., 重型, 雙手",
     rarities: {
       common: "旋律長度 2。單音/旋律演奏為 20 呎內隊友提供 buff (持續 1 分鐘)。可用音符：小攻擊力提升 (+1 物傷)、小移速提升 (+5 呎)、小技能提升 (+1 自選技能)。",
@@ -107,7 +107,7 @@ const weaponsData = [
   {
     id: "lance",
     name: "長槍 (Lance)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "長槍, 戟",
     base: "長槍: 20 gp, 1d8 穿刺, 6 lb., 觸及, 雙手(1d10)\n盾牌: 20 gp, +2 AC, 6 lb.",
     rarities: {
@@ -121,8 +121,8 @@ const weaponsData = [
   {
     id: "gunlance",
     name: "銃槍 (Gunlance)",
-    type: "軍用近戰武器 (Martial Melee)",
-    prof: "長槍 (Lance), 戟 (Halberd)",
+    type: "軍用近戰武器",
+    prof: "長槍 , 戟",
     base: "銃槍: 30 gp, 1d8 穿刺, 6 lb., 觸及\n盾牌: 20 gp, +2 AC, 6 lb.\n拔槍持盾 (Quick Draw): 拔刀或撿起武器時可同時裝備盾牌",
     rarities: {
       common: "具備觸及與快速持盾特性。",
@@ -135,7 +135,7 @@ const weaponsData = [
   {
     id: "switch_axe",
     name: "斬擊斧 (Switch Axe)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "巨斧, 巨劍",
     base: "劍模式: 1d10 揮砍, 7 lb., 重型, 雙手\n斧模式: 1d10 揮砍, 7 lb., 重型, 雙手, 觸及\n附贈動作變形切換",
     rarities: {
@@ -149,7 +149,7 @@ const weaponsData = [
   {
     id: "charge_blade",
     name: "充能斧 (Charge Blade)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "盾牌, 巨斧, 短劍, 長劍, 彎刀",
     base: "斧模式: 1d12 揮砍, 7 lb., 重型, 雙手\n劍盾模式: 1d6 揮砍 +2 AC, 8 lb., 靈巧, 輕型\n切換模式: 附贈動作切換斧/劍盾模式",
     rarities: {
@@ -163,7 +163,7 @@ const weaponsData = [
   {
     id: "insect_glaive",
     name: "操蟲棍 (Insect Glaive)",
-    type: "軍用或簡易近戰武器 (Martial/Simple Melee)",
+    type: "軍用或簡易近戰武器",
     prof: "戟, 長柄刀, 三叉戟, 標槍, 矛",
     base: "35 gp, 1d10 揮砍, 5 lb., 雙手\n撐桿跳 (Standing Leap): 動作跳躍 (力量值+PB 呎) 並在同個動作中發動一次攻擊",
     rarities: {
@@ -177,8 +177,8 @@ const weaponsData = [
   {
     id: "bow",
     name: "弓 (Bow)",
-    type: "軍用或簡易遠程武器 (Martial/Simple Ranged)",
-    prof: "短弓 (Shortbow), 長弓 (Longbow)",
+    type: "軍用或簡易遠程武器",
+    prof: "短弓 , 長弓",
     base: "24 gp, 1d8 穿刺, 2 lb. 彈藥 (150/600), 雙手",
     rarities: {
       common: "瓶裝塗層 (Coatings)：附贈動作塗抹至多 10 發箭矢 (持續 10 分鐘)。塗層 DC = 8 + PB + Dex。",
@@ -191,8 +191,8 @@ const weaponsData = [
   {
     id: "heavy_bowgun",
     name: "重弩 (Heavy Bowgun)",
-    type: "軍用遠程武器 (Martial Ranged)",
-    prof: "重弩 (Heavy Crossbow)",
+    type: "軍用遠程武器",
+    prof: "重弩",
     base: "50 gp, 1d10 穿刺, 18 lb., 彈藥 (100/400), 重型, 裝填, 雙手",
     rarities: {
       common: "附贈動作更換彈藥類型。可用通常彈、捕獲彈。",
@@ -205,8 +205,8 @@ const weaponsData = [
   {
     id: "light_bowgun",
     name: "輕弩 (Light Bowgun)",
-    type: "簡易遠程武器 (Simple Ranged)",
-    prof: "輕弩 (Light Crossbow)",
+    type: "簡易遠程武器",
+    prof: "輕弩",
     base: "24 gp, 1d4 穿刺, 5 lb., 彈藥 (80/320), 裝填, 雙手, 特殊",
     rarities: {
       common: "速射 (Rapid Fire)：每次攻擊動作射出 2 發。\n過熱 (Overheat)：命中後下一發攻擊傷害上限為 1d4 且不吃任何傷害加成，射擊後重置。\n換彈：附贈動作更換彈種。",
@@ -219,8 +219,8 @@ const weaponsData = [
   {
     id: "accel_axe",
     name: "加速斧 (Accel Axe)",
-    type: "軍用近戰武器 (Martial Melee)",
-    prof: "戰斧 (Battleaxe), 巨斧 (Greataxe)",
+    type: "軍用近戰武器",
+    prof: "戰斧, 巨斧 ",
     base: "50 gp, 1d12 揮砍, 8 lb., 重型, 雙手",
     rarities: {
       common: "基礎 1d12 揮砍，無魔法特性。",
@@ -233,7 +233,7 @@ const weaponsData = [
   {
     id: "magnet_spike",
     name: "磁力斬 (Magnet Spike)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "巨劍, 巨槌",
     base: "35 gp, 2d4 傷害 (附贈動作切換鈍擊/揮砍), 7 lb., 重型, 雙手\n磁場槍: 攻擊動作中發射磁球 (30/120 呎 2d4 穿刺) 附著 1 分鐘\n磁力增幅: 每次命中磁化目標傷害骰提升 1 級 (最高 1d8)",
     rarities: {
@@ -247,8 +247,8 @@ const weaponsData = [
   {
     id: "magus_staff",
     name: "魔導杖 (Magus Staff)",
-    type: "簡易近戰武器 (Simple Melee)",
-    prof: "長棍 (Quarterstaff)",
+    type: "簡易近戰武器",
+    prof: "長棍",
     base: "20 gp, 1d6 鈍擊, 4 lb., 雙手通用 (1d8)\n奧術干擾: 同調此法杖者無法持盾\n法器: 可作為法術發動法器",
     rarities: {
       common: "法器與法術導引。",
@@ -261,7 +261,7 @@ const weaponsData = [
   {
     id: "splint_rapier",
     name: "雙手細劍 (Splint Rapier)",
-    type: "軍用近戰武器 (Martial Melee)",
+    type: "軍用近戰武器",
     prof: "長劍, 細劍, 短劍",
     base: "單劍模式: 1d8 穿刺, 靈巧, 輕型\n雙劍模式: 1d6 穿刺, 靈巧, 輕型 (雙刀)\n附贈動作切換形態",
     rarities: {
@@ -275,7 +275,7 @@ const weaponsData = [
   {
     id: "tonfas",
     name: "穿龍棍 (Tonfas)",
-    type: "軍用或簡易近戰武器 (Martial/Simple Melee)",
+    type: "軍用或簡易近戰武器",
     prof: "短棍, 連枷, 手斧, 輕型手槌, 釘頭槌, 鐵頭木棒, 戰槌",
     base: "25 gp, 1d6 鈍擊, 4 lb., 輕型 (每把)",
     rarities: {
@@ -289,8 +289,8 @@ const weaponsData = [
   {
     id: "wire_knuckles",
     name: "鐵線拳套 (Wire Knuckles)",
-    type: "簡易近戰武器 (Simple Melee)",
-    prof: "任意武器熟練 (Any)",
+    type: "簡易近戰武器",
+    prof: "任意武器熟練",
     base: "30 gp, 1d4 鈍擊, 2 lb., 輕型 (每手)",
     rarities: {
       common: "基礎空手強化拳套。",
@@ -303,7 +303,7 @@ const weaponsData = [
   {
     id: "wyvern_boomerang",
     name: "飛龍迴力鏢 (Wyvern Boomerang)",
-    type: "軍用或簡易近戰武器 (Martial/Simple Melee)",
+    type: "軍用或簡易近戰武器",
     prof: "巨劍, 任何具備投擲特性的武器",
     base: "1d10 揮砍, 雙手, 投擲 (60/180)\n附帶動力手套 (徒手傷害為 1d4)；命中立即回手，未命中回合結束回手",
     rarities: {
@@ -317,8 +317,8 @@ const weaponsData = [
   {
     id: "dual_repeaters",
     name: "雙重連射弩 (Dual Repeaters)",
-    type: "軍用遠程武器 (Martial Ranged)",
-    prof: "槍械 (Firearms), 手弩 (Hand Crossbow)",
+    type: "軍用遠程武器",
+    prof: "槍械 , 手弩 ",
     base: "25 gp, 2d4 穿刺, 5 lb., 彈藥 (30/120), 靈巧, 裝填(6), 輕型, 特殊 (每把)\n副手射擊: 攻擊動作射主手後可附贈動作射副手；不加屬性修正至傷害",
     rarities: {
       common: "彈容量各 6 發。可用通常彈、捕獲彈。",
