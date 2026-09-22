@@ -413,7 +413,7 @@ window.onclick = function(e) {
 };
 /* ===== 異常狀態百科（僅卡片模式） ===== */
 const conditions = [
-  // 魔物獵人客製
+  // 魔物獵人
   {
     id: 'bloodblight',
     name: '劫血異常 (Bloodblight)',
