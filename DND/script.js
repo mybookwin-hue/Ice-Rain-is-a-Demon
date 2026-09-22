@@ -93,7 +93,7 @@ const weaponsData = [
   {
     id: "hunting_horn",
     name: "狩獵笛 (Hunting Horn)",
-    type: "軍用近戰武器)",
+    type: "軍用近戰武器",
     prof: "樂器, 巨槌, 戰槌",
     base: "50 gp, 1d12 鈍擊, 8 lb., 重型, 雙手",
     rarities: {
