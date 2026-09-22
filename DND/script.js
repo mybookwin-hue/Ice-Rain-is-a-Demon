@@ -418,7 +418,7 @@ const conditions = [
     id: 'bloodblight',
     name: '劫血異常 (Bloodblight)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '狀態',
     mechanics: [
       '若自回合開始後未對敵對生物進行攻擊或造成傷害，回合結束時損失 **1d10** 生命值。',
@@ -429,7 +429,7 @@ const conditions = [
     id: 'dragonblight',
     name: '龍屬性異常 (Dragonblight)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '狀態',
     mechanics: [
       '無法透過法術或攻擊造成 **冷凍、火焰、閃電、壞死或雷霆** 傷害。',
@@ -440,7 +440,7 @@ const conditions = [
     id: 'iceblight',
     name: '冰屬性異常 (Iceblight)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '疾病',
     mechanics: [
       '無法使用 **反應 (Reactions)**。',
@@ -452,7 +452,7 @@ const conditions = [
     id: 'slick',
     name: '滑溜 (Slick)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '狀態',
     mechanics: [
       '**敏捷豁免** 檢定具有 **劣勢**。',
@@ -465,7 +465,7 @@ const conditions = [
     id: 'tarred',
     name: '重油 (Tarred)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '狀態 / 區域',
     mechanics: [
       '【生物】陷入 **束縛 (Restrained)** 狀態，免疫被繳械，無法使用非手中持有的武器或物品。',
@@ -478,7 +478,7 @@ const conditions = [
     id: 'thunderblight',
     name: '雷屬性異常 (Thunderblight)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '狀態',
     mechanics: [
       '避免陷入 **眩暈 (Stunned)** 狀態的豁免檢定具 **劣勢**。',
@@ -489,7 +489,7 @@ const conditions = [
     id: 'waterblight',
     name: '水屬性異常 (Waterblight)',
     category: 'mh',
-    categoryLabel: '魔物獵人客製',
+    categoryLabel: '魔物獵人',
     type: '毒素',
     mechanics: [
       '耐力被抽乾。',
